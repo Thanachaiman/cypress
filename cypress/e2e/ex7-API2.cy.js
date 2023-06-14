@@ -5,9 +5,7 @@ describe('API 2: POST To All Products List', () => {
 			url: 'https://automationexercise.com/api/productsList',
 			failOnStatusCode: false, // Replace with the URL of your API endpoint
 			body: {},
-			headers: {
-				// Replace with any required headers
-			},
+			headers: {},
 		}).then(response => {
 			expect(response.body.responseCode).to.eq(405)
 			expect(response.body.message).to.contain(
