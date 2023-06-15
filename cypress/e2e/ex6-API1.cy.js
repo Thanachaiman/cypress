@@ -6,6 +6,6 @@ describe('API 1: Get All Products List', () => {
 		}).as('res')
 
 		cy.get('@res').its('status').should('eq', 200)
-		cy.log('@res')
+		cy.get('@res').its('body').should('not.be.NaN')
 	})
 })
