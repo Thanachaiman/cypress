@@ -1,0 +1,9 @@
+{
+	"button": {
+		"deleteButton": ".shop-menu > .nav > :nth-child(5) > a",
+		"continueButton": "[data-qa='continue-button']",
+		"signUpLoginButton": ".shop-menu > .nav > :nth-child(4) > a"
+	},
+
+	"elementForCheckPageLoad": "a > img"
+}

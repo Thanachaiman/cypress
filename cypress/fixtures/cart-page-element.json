@@ -1,0 +1,20 @@
+{
+	"product1": {
+		"name": "Blue Top",
+		"price": "Rs. 500",
+		"totalPrice": "Rs. 500",
+		"amount": "1",
+		"priceLocator": "#product-1 > .cart_price > p",
+		"amountLocator": "#product-1 > .cart_quantity > .disabled",
+		"totalPriceLocator": "#product-1 > .cart_total > .cart_total_price"
+	},
+	"product2": {
+		"name": "Sleeveless Dress",
+		"price": "Rs. 1000",
+		"totalPrice": "Rs. 2000",
+		"priceLocator": "#product-3 > .cart_price > p",
+		"amountLocator": "#product-3 > .cart_quantity > .disabled",
+		"totalPriceLocator": "#product-3 > .cart_total > .cart_total_price",
+		"amount": "2"
+	}
+}

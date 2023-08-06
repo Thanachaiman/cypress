@@ -1,24 +1,28 @@
 {
-	"username": "tang563145001@gmail.com",
-	"myname": "Thachai",
-	"password": "t12345678",
-	"invalidusername": "tang563cccc145003@gmail.com",
-	"invalidpassword": "t12345cccc678",
-	"name": "mail",
-	"email": "tang563145003@gmail.com",
+	"user1": {
+		"idName": "Thachai",
+		"firstname": "tang",
+		"lastname": "kung",
+		"day": 1,
+		"month": "January",
+		"year": "2001",
 
-	"day": 1,
-	"month": "January",
-	"year": "2001",
-	"firstname": "tang",
-	"lastname": "kung",
-	"company": "mycompany",
-	"address": "bangkok",
-	"country": "Singapore",
-	"state": "bangkok",
-	"city": "bangkok",
-	"moblile": "0640121155",
-	"zipcode": "31450",
+		"company": "mycompany",
+		"address": "bangkok",
+		"country": "Singapore",
+		"state": "bangkok",
+		"city": "bangkok",
+		"mobile": "0640121155",
+		"zipcode": "31450",
 
-	"apiurl": "https://automationexercise.com/api/productsList"
+		"username": "tang563145001@gmail.com",
+		"password": "t12345678",
+		"nameForSignUp": "mail",
+		"emailForSignUp": "tang563145003@gmail.com"
+	},
+
+	"incorrectData": {
+		"invalidusername": "tang563cccc145003@gmail.com",
+		"invalidpassword": "t12345cccc678"
+	}
 }

@@ -1,48 +1,55 @@
 const { ProductPage } = require('../page-objects/product-page')
+const { CartPage } = require('../page-objects/cart-page')
 
 describe('Test Case 12: Add Products in Cart', () => {
 	beforeEach(() => {
-		ProductPage.visit('/')
-		cy.fixture('user.json').as('data')
+		cy.visit('/')
+		cy.fixture('user.json').as('userData')
+		cy.fixture('page-element.json').as('pageElement')
+		cy.fixture('product-page-element.json').as('productPageElement')
+		cy.fixture('cart-page-element.json').as('cartPageElement')
 	})
 
 	it('Test Case 12: Add Products in Cart', function () {
-		cy.get('a > img').should('be.visible')
-		ProductPage.hoverProduct(
-			'.features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > h2'
-		)
-		ProductPage.clickProduct(
-			'.features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn'
-		)
+		ProductPage.checkPageLoadComplete(this.pageElement.elementForCheckPageLoad)
+		ProductPage.hoverProduct(this.productPageElement.product1.imageLocator)
+		ProductPage.clickProduct(this.productPageElement.product1.itemLocator)
 		ProductPage.clickContinueShopping()
-		ProductPage.hoverProduct(
-			'.features_items > :nth-child(5) > .product-image-wrapper > .single-products > .productinfo > h2'
-		)
-		ProductPage.clickProduct(
-			'.features_items > :nth-child(5) > .product-image-wrapper > .single-products > .productinfo > .btn'
-		)
+
+		ProductPage.hoverProduct(this.productPageElement.product2.imageLocator)
+		ProductPage.clickProduct(this.productPageElement.product2.itemLocator)
+
 		ProductPage.clickContinueShopping()
-		ProductPage.clickProduct(
-			'.features_items > :nth-child(5) > .product-image-wrapper > .single-products > .productinfo > .btn'
-		)
+		ProductPage.clickProduct(this.productPageElement.product2.itemLocator)
 
 		ProductPage.clickViewCart()
-		cy.contains('Blue Top').should('be.visible')
-		cy.contains('Sleeveless Dress').should('be.visible')
+		CartPage.checkElementIsVisible(this.cartPageElement.product1.name)
+		CartPage.checkElementIsVisible(this.cartPageElement.product2.name)
 
-		ProductPage.checkproduct('#product-1 > .cart_price > p', 'Rs. 500')
-		ProductPage.checkproduct('#product-3 > .cart_price > p', 'Rs. 1000')
-		ProductPage.checkproduct('#product-1 > .cart_quantity > .disabled', '1')
-		ProductPage.checkproduct('#product-3 > .cart_quantity > .disabled', '2')
-		ProductPage.checkproduct(
-			'#product-1 > .cart_total > .cart_total_price',
-			'Rs. 500'
+		CartPage.checkDataOfProduct(
+			this.cartPageElement.product1.priceLocator,
+			this.cartPageElement.product1.price
 		)
-		ProductPage.checkproduct(
-			'#product-3 > .cart_total > .cart_total_price',
-			'Rs. 2000'
+		CartPage.checkDataOfProduct(
+			this.cartPageElement.product2.priceLocator,
+			this.cartPageElement.product2.price
+		)
+		CartPage.checkDataOfProduct(
+			this.cartPageElement.product1.amountLocator,
+			this.cartPageElement.product1.amount
+		)
+		CartPage.checkDataOfProduct(
+			this.cartPageElement.product2.amountLocator,
+			this.cartPageElement.product2.amount
 		)
 
-		// cy.get('#product-1 > td.cart_price').should('eq', 'Rs. 500')
+		CartPage.checkDataOfProduct(
+			this.cartPageElement.product1.totalPriceLocator,
+			this.cartPageElement.product1.totalPrice
+		)
+		CartPage.checkDataOfProduct(
+			this.cartPageElement.product2.totalPriceLocator,
+			this.cartPageElement.product2.totalPrice
+		)
 	})
 })

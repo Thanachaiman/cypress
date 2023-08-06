@@ -1,0 +1,15 @@
+{
+	"product1": {
+		"imageLocator": ".features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > h2",
+		"itemLocator": ".features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn"
+	},
+
+	"product2": {
+		"imageLocator": ".features_items > :nth-child(5) > .product-image-wrapper > .single-products > .productinfo > h2",
+		"itemLocator": ".features_items > :nth-child(5) > .product-image-wrapper > .single-products > .productinfo > .btn"
+	},
+	"text": {
+		"item": "Item",
+		"cartEmpty": "Cart is empty! Click here to buy products."
+	}
+}

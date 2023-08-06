@@ -1,21 +1,25 @@
+const { ApiPage } = require('../page-objects/api-page')
+
 describe('API 2: POST To All Products List', () => {
-	it('API 2: POST To All Products List', () => {
+	let apiData
+	before(() => {
+		cy.fixture('api-data.json').then(fData => {
+			apiData = fData
+		})
+	})
+	it('POST To All Products List', () => {
 		cy.request({
 			method: 'POST',
-			url: 'https://automationexercise.com/api/productsList',
+			url: '/api/productsList',
 			failOnStatusCode: false, // Replace with the URL of your API endpoint
 			form: true,
+			json: true,
 			body: { search_product: 'jean' },
-		}).then(response => {
-			cy.log(response.body)
-			cy.log(Object.keys(response))
-
-			expect(response.body.responseCode).to.eq(405)
-			expect(response.body.message).to.contain(
-				'This request method is not supported.'
-			)
-		})
-
-		// cy.log('@res')
+			headers: {
+				accept: 'application/json',
+			},
+		}).as('res')
+		ApiPage.checkResponseCode('@res', apiData.status.methodNotAllowed)
+		ApiPage.checkMessage('@res', apiData.message.responseMessage405)
 	})
 })

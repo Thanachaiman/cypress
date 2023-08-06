@@ -2,24 +2,20 @@ const { ProductPage } = require('../page-objects/product-page')
 
 describe('Test Case 17: Remove Products From Cart', () => {
 	beforeEach(() => {
-		ProductPage.visit('/')
-		cy.fixture('user.json').as('data')
+		cy.visit('/')
+		cy.fixture('user.json').as('userData')
+		cy.fixture('page-element.json').as('pageElement')
+		cy.fixture('product-page-element.json').as('productPageElement')
 	})
 
-	it('Test Case 17: Remove Products From Cart', function () {
-		cy.get('a > img').should('be.visible')
-		ProductPage.hoverProduct(
-			'.features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > h2'
-		)
-		ProductPage.clickProduct(
-			'.features_items > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn'
-		)
+	it('Remove Products From Cart', function () {
+		ProductPage.checkPageLoadComplete(this.pageElement.elementForCheckPageLoad)
+		ProductPage.hoverProduct(this.productPageElement.product1.imageLocator)
+		ProductPage.clickProduct(this.productPageElement.product1.itemLocator)
 		ProductPage.clickContinueShopping()
-		ProductPage.clickCardButton()
-		cy.contains('Item').should('be.visible')
+		ProductPage.clickCartButton()
+		ProductPage.checkElementIsVisible(this.productPageElement.text.item)
 		ProductPage.clickDeleteButton()
-		cy.contains('Cart is empty! Click here to buy products.').should(
-			'be.visible'
-		)
+		ProductPage.checkElementIsVisible(this.productPageElement.text.cartEmpty)
 	})
 })

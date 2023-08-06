@@ -1,10 +1,6 @@
 const { Page } = require('./page')
 
 class LoginPage extends Page {
-	static visit(url) {
-		cy.visit(url)
-	}
-
 	static fillUsername(username) {
 		cy.get('[data-qa="login-email"]').type(username)
 	}
@@ -13,8 +9,10 @@ class LoginPage extends Page {
 		cy.get('[data-qa="login-password"]').type(password)
 	}
 
-	static clickSubmit() {
+	static clickSubmitButton() {
 		cy.get('[data-qa="login-button"]').click()
 	}
+
+	static clickLoginButton() {}
 }
 module.exports = { LoginPage }

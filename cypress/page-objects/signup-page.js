@@ -1,8 +1,8 @@
 const { Page } = require('./page')
 
-class signupPage extends Page {
-	static visit(url) {
-		cy.visit(url)
+class signUpPage extends Page {
+	static checkAutomationExcercisePageLoadComplete(url) {
+		cy.get('a > img').should('be.visible')
 	}
 
 	static fillName(name) {
@@ -31,7 +31,7 @@ class signupPage extends Page {
 		cy.get('[data-qa="years"]').select(year)
 	}
 
-	static fillSelect() {
+	static selectSignUpForOurNewsletter() {
 		cy.get('#newsletter').click()
 	}
 
@@ -62,9 +62,9 @@ class signupPage extends Page {
 	static clickCreateAccount() {
 		cy.get('[data-qa="create-account"]').click()
 	}
-
-	// static clickContinuebutton() {
-	// 	cy.get('[data-qa="continue-button"]').click()
-	// }
 }
-module.exports = { signupPage }
+
+class signUpPageLocator {
+	static imgCheckComplete = '.login-form > h2'
+}
+module.exports = { signUpPage }

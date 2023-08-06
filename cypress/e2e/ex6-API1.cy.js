@@ -1,11 +1,19 @@
+const { ApiPage } = require('../page-objects/api-page')
+
 describe('API 1: Get All Products List', () => {
-	it('API 1: Get All Products List', () => {
+	let apiData
+	before(() => {
+		cy.fixture('api-data.json').then(fData => {
+			apiData = fData
+		})
+	})
+	it('Get All Products List', () => {
 		cy.request({
 			method: 'GET',
-			url: 'https://automationexercise.com/api/productsList',
+			url: '/api/productsList',
 		}).as('res')
 
-		cy.get('@res').its('status').should('eq', 200)
-		cy.get('@res').its('body').should('not.be.NaN')
+		ApiPage.checkStatus('@res', apiData.status.ok)
+		ApiPage.checkIsNotNan('@res')
 	})
 })

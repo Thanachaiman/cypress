@@ -5,10 +5,13 @@ describe('API 9: DELETE To Verify Login', () => {
 			url: 'https://automationexercise.com/api/verifyLogin',
 			body: {},
 		}).then(response => {
-			// cy.log(response)
-			expect(response.body.responseCode).to.eq(405)
-			expect(response.body.message).to.contain(
-				'This request method is not supported.'
+			ApiPage.checkResponseCodeWithExpect(
+				response.body.responseCode,
+				apiData.status.methodNotAllowed
+			)
+			ApiPage.checkMessageWithExpect(
+				response.body.message,
+				apiData.message.responseMessage405
 			)
 		})
 	})

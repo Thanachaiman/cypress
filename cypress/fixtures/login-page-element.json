@@ -1,0 +1,8 @@
+{
+	"elementForCheckLoginPageLoad": ".login-form > h2",
+
+	"text": {
+		"loginSuccessfully": "Logged in as",
+		"incorrectData": "Your email or password is incorrect!"
+	}
+}

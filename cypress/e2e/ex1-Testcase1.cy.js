@@ -1,41 +1,46 @@
-const { signupPage } = require('../page-objects/signup-page')
+const { signUpPage } = require('../page-objects/signup-page')
 
 describe('Test Case 1: Register User', () => {
 	beforeEach(() => {
-		signupPage.visit('/')
+		cy.visit('/')
 		cy.fixture('user.json').as('userData')
+		cy.fixture('page-element.json').as('PageElement')
+		cy.fixture('signup-page-element').as('signUpPageElement')
+		cy.fixture('login-page-element').as('loginPageElement')
 	})
-	it('Test Case 1: Register User', function () {
-		cy.get('a > img').should('be.visible')
-		cy.get('.shop-menu > .nav > :nth-child(4) > a').click()
-		cy.get('.login-form > h2').should('be.visible')
-		signupPage.fillName(this.userData.name)
-		signupPage.fillEmail(this.userData.email)
-		signupPage.clickSignUp()
-		signupPage.fillPassword(this.userData.password)
-		cy.contains('Enter Account Information').should('be.visible')
-		signupPage.fillDate(
-			this.userData.day,
-			this.userData.month,
-			this.userData.year
+	it('Register User with valid data', function () {
+		signUpPage.checkPageLoadComplete(this.PageElement.elementForCheckPageLoad)
+		signUpPage.clickSignupLoginButton(this.PageElement.signUpLoginButton)
+		signUpPage.checkPageLoadComplete(
+			this.loginPageElement.elementForCheckLoginPageLoad
 		)
-		signupPage.fillSelect()
-		signupPage.fillFirstname(this.userData.firstname)
-		signupPage.fillLastname(this.userData.lastname)
-		signupPage.fillCompany(this.userData.company)
-		signupPage.selectAddress(
-			this.userData.address,
-			this.userData.country,
-			this.userData.state,
-			this.userData.city,
-			this.userData.zipcode
+		signUpPage.fillName(this.userData.user1.nameForSignUp)
+		signUpPage.fillEmail(this.userData.user1.emailForSignUp)
+		signUpPage.clickSignUp()
+		signUpPage.fillPassword(this.userData.user1.password)
+		signUpPage.checkElementIsVisible(this.signUpPageElement.text.checkPageLoad)
+		signUpPage.fillDate(
+			this.userData.user1.day,
+			this.userData.user1.month,
+			this.userData.user1.year
 		)
-		signupPage.fillMobilephone(this.userData.moblile)
-		signupPage.clickCreateAccount()
-		cy.contains('Account Created!').should('be.visible')
-		signupPage.clickContinuebutton()
-		signupPage.clickDeletebutton()
-		cy.contains('Account Deleted!').should('be.visible')
-		signupPage.clickContinuebutton()
+		signUpPage.selectSignUpForOurNewsletter()
+		signUpPage.fillFirstname(this.userData.user1.firstname)
+		signUpPage.fillLastname(this.userData.user1.lastname)
+		signUpPage.fillCompany(this.userData.user1.company)
+		signUpPage.selectAddress(
+			this.userData.user1.address,
+			this.userData.user1.country,
+			this.userData.user1.state,
+			this.userData.user1.city,
+			this.userData.user1.zipcode
+		)
+		signUpPage.fillMobilephone(this.userData.user1.mobile)
+		signUpPage.clickCreateAccount()
+		signUpPage.checkElementIsVisible(this.signUpPageElement.text.accountCreated)
+		signUpPage.clickContinuebutton()
+		signUpPage.clickDeletebutton()
+		signUpPage.checkElementIsVisible(this.signUpPageElement.text.accountDeleted)
+		signUpPage.clickContinuebutton()
 	})
 })

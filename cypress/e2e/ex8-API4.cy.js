@@ -1,15 +1,27 @@
+const { ApiPage } = require('../page-objects/api-page')
+
 describe('API 4: PUT To All Brands List', () => {
-	it('API 4: PUT To All Brands List', () => {
+	let apiData
+	before(() => {
+		cy.fixture('api-data.json').then(fData => {
+			apiData = fData
+		})
+	})
+	it('PUT To All Brands List', () => {
 		cy.request({
 			method: 'PUT',
-			url: 'https://automationexercise.com/api/brandsList',
+			url: '/api/brandsList',
 			failOnStatusCode: false, // Replace with the URL of your API endpoint
 			body: {},
 			headers: {},
 		}).then(response => {
-			expect(response.body.responseCode).to.eq(405)
-			expect(response.body.message).to.contain(
-				'This request method is not supported.'
+			ApiPage.checkResponseCodeWithExpect(
+				response.body.responseCode,
+				apiData.status.methodNotAllowed
+			)
+			ApiPage.checkMessageWithExpect(
+				response.body.message,
+				apiData.message.responseMessage405
 			)
 		})
 	})

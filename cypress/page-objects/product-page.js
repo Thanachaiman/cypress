@@ -21,11 +21,7 @@ class ProductPage extends Page {
 		cy.get('u').click()
 	}
 
-	static checkproduct(element, data) {
-		cy.get(element).contains(data).should('be.visible')
-	}
-
-	static clickCardButton() {
+	static clickCartButton() {
 		cy.get('.shop-menu > .nav > :nth-child(3) > a').click()
 	}
 

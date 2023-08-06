@@ -1,0 +1,10 @@
+{
+	"status": {
+		"ok": 200,
+		"methodNotAllowed": 405
+	},
+
+	"message": {
+		"responseMessage405": "This request method is not supported."
+	}
+}
